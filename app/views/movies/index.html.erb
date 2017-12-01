@@ -2,7 +2,7 @@
 <p>Find me in app/views/movies/index.html.erb</p>
 
 <% @movies.each do |movie| %>
-  <h2><%= movie.title %></h2>
+  <h2><%= link_to movie.title, movie_path(movie) %></h2>
 <% end %>
 
 <%= link_to 'New Movies', new_movie_path %>

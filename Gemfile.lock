@@ -73,6 +73,9 @@ GEM
     execjs (2.7.0)
     factory_bot (4.8.2)
       activesupport (>= 3.0.0)
+    factory_bot_rails (4.8.2)
+      factory_bot (~> 4.8.2)
+      railties (>= 3.0.0)
     ffi (1.9.18)
     formatador (0.2.5)
     globalid (0.4.1)
@@ -241,7 +244,7 @@ DEPENDENCIES
   capybara (~> 2.16, >= 2.16.1)
   coffee-rails (~> 4.2)
   devise (~> 4.2)
-  factory_bot (~> 4.8, >= 4.8.2)
+  factory_bot_rails (~> 4.0)
   guard-rspec (~> 4.7, >= 4.7.3)
   jbuilder (~> 2.5)
   jquery-rails

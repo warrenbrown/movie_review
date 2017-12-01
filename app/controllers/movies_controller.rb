@@ -38,6 +38,12 @@ class MoviesController < ApplicationController
     redirect_to movie_path
   end
 
+  def destroy
+    @movie.destroy
+    flash[:notice ] = 'Movie has been deleted.'
+    redirect_to movies_path
+  end
+
   private
 
   def set_movie

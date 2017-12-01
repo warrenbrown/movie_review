@@ -1,2 +1,6 @@
 <h1><%= @movie.title %></h1>
 <p><%= @movie.description %></p>
+
+<div class="actions">
+  <%= link_to 'Edit Movie', edit_movie_path(@movie) %>
+</div>

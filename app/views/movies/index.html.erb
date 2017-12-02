@@ -1,8 +1,10 @@
-<h1>Movies#index</h1>
-<p>Find me in app/views/movies/index.html.erb</p>
-
-<% @movies.each do |movie| %>
-  <h2><%= link_to movie.title, movie_path(movie) %></h2>
-<% end %>
+<h1 class="current-category"><%= params[:category] %></h1>
+  <% if @movies.count == 0 %>
+    <h1>There are currently no books in this category</h1>
+  <% else %>
+    <% @movies.each do |movie| %>
+      <h2><%= link_to movie.title, movie_path(movie) %></h2>
+    <% end %>
+  <% end %>
 
 <%= link_to 'New Movies', new_movie_path %>

@@ -1,4 +1,5 @@
 class MoviesController < ApplicationController
+  before_action :authenticate_user!, except: [ :index ]
   before_action :set_movie, only:[ :show, :edit, :update, :destroy ]
 
   def index
@@ -7,17 +8,21 @@ class MoviesController < ApplicationController
 
   def new
     @movie = Movie.new
+    @categories = Category.all.map{ |c| [c.name, c.id] }
   end
 
   def create
     @movie = Movie.new(movie_params)
+    @categories = Category.all.map{ |c| [c.name, c.id] }
+    @movie.category_id = params[:category_id]
     if @movie.save
       flash[:notice] = 'Movie has been created.'
+      redirect_to movies_path
     else
       flash.now[:alert] = 'Movie has not been saved.'
       render 'new'
     end
-    redirect_to movies_path
+
   end
 
   def show
@@ -26,9 +31,11 @@ class MoviesController < ApplicationController
 
   def edit
     @movie = Movie.find(params[:id])
+    @categories = Category.all.map{ |c| [c.name, c.id] }
   end
 
   def update
+    @categories = Category.all.map{ |c| [c.name, c.id] }
     if @movie.update(movie_params)
       flash[:notice] = 'Movie has been updated.'
     else
@@ -50,6 +57,6 @@ class MoviesController < ApplicationController
     @movie = Movie.find(params[:id])
   end
   def movie_params
-    params.require(:movie).permit(:title, :description, :genre)
+    params.require(:movie).permit(:title, :description, :genre, :category_id)
   end
 end

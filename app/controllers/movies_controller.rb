@@ -44,11 +44,12 @@ class MoviesController < ApplicationController
     @categories = Category.all.map{ |c| [c.name, c.id] }
     if @movie.update(movie_params)
       flash[:notice] = 'Movie has been updated.'
+      redirect_to movie_path
     else
       flash.now[:alert] = 'Movie has not been update'
       render 'new'
     end
-    redirect_to movie_path
+
   end
 
   def destroy
@@ -63,6 +64,6 @@ class MoviesController < ApplicationController
     @movie = Movie.find(params[:id])
   end
   def movie_params
-    params.require(:movie).permit(:title, :description, :genre, :category_id)
+    params.require(:movie).permit(:title, :description, :genre, :category_id, :movie_image)
   end
 end

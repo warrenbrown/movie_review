@@ -1,6 +1,29 @@
-<h1><%= @movie.title %></h1>
-<h2><%= @movie.category.name %></h2>
-<p><%= @movie.description %></p>
+<div class="row">
+  <div class="col-md-4">
+    <%= image_tag @movie.movie_image.url(:movie_show), class: 'book-show' %>
+  </div>
+  <div class="col-md-8">
+    <h1><%= @movie.title %></h1>
+    <h3><%= @movie.category.name %></h3>
+
+    <p><%= @movie.description %></p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-4">
+    <div class="reviews">
+      <h1>Reviews</h1>
+      <p><%= render @movie.reviews %></p> <br>
+
+      <div>
+        <%= link_to 'Add Review', new_movie_review_path(@movie), class: 'btn btn-primary' %>
+      </div>
+    </div>
+
+  </div>
+</div>
+
 
 <div class="actions">
   <%= link_to 'Edit Movie', edit_movie_path(@movie) %>

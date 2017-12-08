@@ -3,10 +3,18 @@
     <%= image_tag @movie.movie_image.url(:movie_show), class: 'book-show' %>
   </div>
   <div class="col-md-8">
-    <h1><%= @movie.title %></h1>
-    <h3><%= @movie.category.name %></h3>
+    <div class="book-info">
+      <h1 class="book-title"><%= @movie.title %></h1>
+      <h3><%= @movie.category.name %></h3>
+      <h2 class="averge-rating">Average Rating</h2>
+      <div class="average-review-rating" data-score="<%= @average_review %>">
 
-    <p><%= @movie.description %></p>
+      </div>
+      <span class="number-of-reviews">Based on <%= @movie.reviews.count %> reviews</span>
+      <p class="book-desc"><%= @movie.description %></p>
+
+    </div>
+
   </div>
 </div>
 
@@ -15,17 +23,39 @@
     <div class="reviews">
       <h1>Reviews</h1>
       <p><%= render @movie.reviews %></p> <br>
-
       <div>
-        <%= link_to 'Add Review', new_movie_review_path(@movie), class: 'btn btn-primary' %>
+        <%= link_to 'Add Review', new_movie_review_path(@movie), class: 'btn btn-custom' %>
       </div>
     </div>
 
   </div>
 </div>
+<br>
+
+<%= link_to 'Back', root_path, class: 'btn btn-custom' %>
 
 
-<div class="actions">
-  <%= link_to 'Edit Movie', edit_movie_path(@movie) %>
-  <%= link_to 'Delete Movie', @movie ,class: 'delete', method: :delete, data: { confirm: 'Are you sure you want to delete this movie!'} %>
+<div class="links btn-group">
+  <%= link_to 'Edit Movie', edit_movie_path(@movie), class: 'btn btn-custom' %>
+  <%= link_to 'Delete Movie', @movie ,class: 'delete', method: :delete, data: { confirm: 'Are you sure you want to delete this movie!'}, class: 'btn btn-custom' %>
 </div>
+
+<script>
+  $('.review-rating').raty({
+    readOnly: true,
+    score: function(){
+      return $(this).attr('data-score');
+    },
+    path: '/assets/'
+  });
+</script>
+
+<script>
+  $('.average-review-rating').raty({
+    readOnly: true,
+    score: function(){
+      return $(this).attr('data-score');
+    },
+    path: '/assets/'
+  });
+</script>

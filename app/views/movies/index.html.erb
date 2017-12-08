@@ -6,7 +6,7 @@
     <% @movies.each do |movie| %>
     <div class="col-md-3">
       <a href="/movies/<%= movie.id %>">
-        <%= image_tag movie.movie_image.url(:movie_index), class: 'movie' %>
+        <%= image_tag movie.movie_image.url(:movie_index), class: 'book' %>
       </a>
     </div>
 
@@ -14,4 +14,4 @@
   </div>
   <% end %>
 
-<%= link_to 'New Movies', new_movie_path %>
+<%= link_to 'New Movies', new_movie_path, class: 'btn btn-custom' %>

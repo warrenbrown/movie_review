@@ -1,4 +1,5 @@
 class ReviewsController < ApplicationController
+  before_action :authenticate_user!, only: [ :new, :create, :edit ]
   before_action :get_movie
   before_action :get_review, only: [ :edit, :update, :destroy]
 
